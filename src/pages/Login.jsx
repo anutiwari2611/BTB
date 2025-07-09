@@ -23,6 +23,7 @@ function Login() {
     e.preventDefault();
     alert("Logged In")
     Console.log("Logged In" ,data)
+    navigate("/")
     
   }
   return (
@@ -32,7 +33,7 @@ function Login() {
         <input type="email" placeholder="example@gmail.com" name="email" value={data.email} onChange={handleChange}/>
         <input type={setShow?"text":"password"} placeholder="Password" name="password" value={data.password} onChange={handleChange} />
         {/* <button onClick={(prev)=>!prev}>{setShow?"Hide":"Show"}</button> */}
-        <button type="submit" onClick={()=>navigate("/")}>Login</button>
+        <button type="submit">Login</button>
       </div>
       </form>
     </div>
