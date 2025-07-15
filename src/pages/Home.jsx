@@ -1,12 +1,9 @@
-import "./Home.css";
-import Login from "./Login";
-
 const Home = () => {
   return (
-    <div className="home-container">
-      <h1>Home</h1>
+    <div className="h-screen p-10">
+      <h1 className="text-3xl font-extrabold uppercase">Home</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
