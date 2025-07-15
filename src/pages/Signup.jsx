@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [data, setData] = useState({ name: "", email: "", password: "" });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -11,11 +12,14 @@ function Signup() {
       [name]: value,
     }));
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert("Registered");
-    Console.log("Submitted", data);
+    console.log("Submitted", data);
+    navigate("/"); 
   };
+
   return (
     <div className="bg-black/70 h-screen w-full fixed top-0 backdrop-blur-sm flex justify-center items-center">
       <div className="bg-white rounded-xl px-5 py-10">
@@ -49,14 +53,19 @@ function Signup() {
           />
           <div className="flex justify-evenly">
             <button
-              type="Submit"
+              type="submit"
               className="outline px-4 py-1 outline-black/40 rounded-lg hover:bg-[#168ADE] hover:text-white duration-200"
             >
               Sign up
             </button>
-            <button className="outline px-4 py-1 outline-black/40 rounded-lg hover:bg-[#168ADE] hover:text-white duration-200">
-              <Link to="/login">Login</Link>
-            </button>
+            <Link to="/login">
+              <button
+                type="button"
+                className="outline px-4 py-1 outline-black/40 rounded-lg hover:bg-[#168ADE] hover:text-white duration-200"
+              >
+                Login
+              </button>
+            </Link>
           </div>
         </form>
       </div>
