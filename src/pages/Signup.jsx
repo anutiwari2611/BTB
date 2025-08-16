@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios"
 
 function Signup() {
   const [data, setData] = useState({ name: "", email: "", password: "" });
@@ -13,11 +14,20 @@ function Signup() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Registered");
+    try{
+    const res=await axios.post("http://localhost:5000/api/auth/signup",data)
+
+    alert(res.data.message || "Registered successfully");
     console.log("Submitted", data);
-    navigate("/"); 
+    navigate("/login"); 
+    }
+    catch (err){
+      console.error(err.response?.data || err.message);
+    alert(err.response?.data?.message || "Signup failed");
+
+    }
   };
 
   return (

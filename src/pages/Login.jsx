@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 function Login() {
   const [show, setShow] = useState(false);
@@ -17,11 +18,23 @@ function Login() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+    try{
     e.preventDefault();
-    alert("Logged In");
+    
+    const res=await axios.post("http://localhost:5000/api/auth/login",data)
+     localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userRole", res.data.user.role);
+
+
     console.log("Logged In", data);
     navigate("/");
+    }
+    catch (err){
+        console.error(err);
+      alert(err.response?.data?.message || "Login failed");
+      
+    }
   };
 
   return (

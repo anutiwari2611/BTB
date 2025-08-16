@@ -3,6 +3,8 @@ import { useState } from "react";
 import Form from "./Form";
 
 function Navbar() {
+  const role = localStorage.getItem("userRole");
+
   const [showForm, setShowForm] = useState(false);
 
   return (
@@ -15,7 +17,15 @@ function Navbar() {
             className="object-cover object-center"
           />
         </Link>
-        <Link to='/admin' className="outline px-6 py-1 rounded-full hover:bg-[#F75D34] hover:text-white duration-200 cursor-p" >Admin</Link>
+        {role === "admin" && (
+          <Link
+            to="/admin"
+            className="outline px-6 py-1 rounded-full hover:bg-[#F75D34] hover:text-white duration-200 cursor-p"
+          >
+            Admin
+          </Link>
+        )}
+
         <div>
           <button
             onClick={() => setShowForm(true)}
